@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import DuotoneImg from '@/components/DuotoneImg.vue'
+
 defineProps<{
   title: string
   imgPath: string
@@ -16,6 +18,6 @@ defineProps<{
     <div>
       <slot name="chapo"></slot>
     </div>
-    <img :src="imgPath" :alt="imgAlt" />
+    <DuotoneImg :imgPath="imgPath" :imgAlt="imgAlt" />
   </div>
 </template>
