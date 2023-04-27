@@ -10,6 +10,8 @@ const props = defineProps<{
   imgCardPath: string
   imgAlt?: string
 }>()
+
+const url = `/events/${props.id}`
 </script>
 
 <template>
@@ -23,12 +25,12 @@ const props = defineProps<{
       classImg="group-hover:grayscale-0 group-hover:mix-blend-normal"
     />
     <h3 class="z-[1] col-start-2 row-start-1 my-6 mr-4 self-end font-serif text-3xl text-white">
-      <a href="#">{{ title }}</a>
+      <a :href="`${url}`">{{ title }}</a>
     </h3>
     <div class="z-[2] col-span-1 col-start-2 row-span-2 row-start-2 space-y-4 bg-white p-6">
       <p class="uppercase">{{ formatDate(date) }}</p>
       <p>{{ excerpt }}</p>
-      <a class="inline-block border-b-2 border-black uppercase" href="#">Plus d'info</a>
+      <a class="inline-block border-b-2 border-black uppercase" :href="`${url}`">Plus d'info</a>
     </div>
   </article>
 </template>
