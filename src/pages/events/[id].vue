@@ -2,6 +2,9 @@
 import { events } from '@/data'
 import DuotoneImg from '@/components/DuotoneImg.vue'
 import { formatDate } from '@/helper'
+import Patterns from '@/components/icons/Patterns.vue'
+import { animateLines } from '@/helper'
+animateLines()
 
 const props = defineProps<{ id: string }>()
 const event = events.find((event) => event.id === Number(props.id))
@@ -27,6 +30,11 @@ const event = events.find((event) => event.id === Number(props.id))
           </li>
         </ul>
       </header>
+    </div>
+    <div
+      class="absolute inset-0 z-[-1] flex items-center justify-end overflow-hidden stroke-pink stroke-[24px] opacity-40"
+    >
+      <Patterns class="-ml-60 -mr-[5vw] lg:ml-auto" />
     </div>
     <p class="mx-auto my-12 max-w-4xl px-6 text-2xl leading-normal lg:text-3xl lg:leading-relaxed">
       {{ event?.excerpt }}

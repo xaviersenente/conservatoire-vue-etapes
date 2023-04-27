@@ -6,6 +6,10 @@ import IconDanse from '@/components/icons/IconDanse.vue'
 import Button from '@/components/Button.vue'
 import Card from '@/components/Card.vue'
 import { events } from '@/data'
+
+import Patterns from '@/components/icons/Patterns.vue'
+import { animateLines } from '@/helper'
+animateLines()
 </script>
 <template>
   <Hero
@@ -34,6 +38,13 @@ import { events } from '@/data'
           </li>
         </ul>
       </nav>
+    </template>
+    <template #patterns>
+      <div
+        class="absolute inset-0 flex items-center justify-end overflow-hidden stroke-pink stroke-[24px] opacity-40"
+      >
+        <Patterns class="-ml-60 -mr-[5vw] lg:ml-auto lg:w-[80vw]" />
+      </div>
     </template>
   </Hero>
   <section class="grille my-24 grid-rows-2 space-y-8 lg:space-y-0">
