@@ -11,8 +11,12 @@ const event = events.find((event) => event.id === Number(props.id))
 </script>
 <template>
   <div v-if="event">
-    <div class="grille relative pt-28 lg:grid">
-      <DuotoneImg :imgPath="event.imgPath" :imgAlt="event.imgAlt" classPicture="col-span-5" />
+    <div class="grille relative lg:grid lg:pt-28">
+      <DuotoneImg
+        :imgPath="event.imgPath"
+        :imgAlt="event.imgAlt"
+        classPicture="col-span-5 -ml-6 -mr-6 lg:mx-0"
+      />
       <header class="col-span-6 col-start-7">
         <h1 class="my-12">{{ event.title }}</h1>
         <ul class="divide-y">

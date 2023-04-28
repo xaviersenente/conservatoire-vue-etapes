@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue'
 import LogoIcon from '@/components/icons/IconLogo.vue'
 import SearchIcon from '@/components/icons/IconSearch.vue'
 import { RouterLink } from 'vue-router'
+import { useWindowScroll } from '@vueuse/core'
 
 // Créer une référence réactive pour suivre l'état du menu
 const activeMenu = ref(false)
@@ -10,10 +11,23 @@ const activeMenu = ref(false)
 function closeMenu() {
   activeMenu.value = false
 }
+
+const { y } = useWindowScroll()
+
+const underLimit = computed(() => y.value < 400)
+
+const dirTop = ref(true)
+watch(y, (y, oldY) => {
+  dirTop.value = y < oldY
+})
 </script>
 
 <template>
   <header
+    :class="{
+      '!-translate-y-full !bg-transparent': !dirTop,
+      '!bg-transparent lg:!bg-white': underLimit
+    }"
     class="fixed z-10 flex w-full translate-y-0 items-stretch justify-between bg-white px-6 py-2 transition-all duration-300 ease-in-out lg:py-0"
   >
     <div class="flex items-center">
@@ -24,7 +38,7 @@ function closeMenu() {
 
     <div class="flex items-center gap-4 lg:flex-row-reverse">
       <button>
-        <SearchIcon />
+        <SearchIcon :class="{ 'stroke-white lg:stroke-black': underLimit }" />
       </button>
 
       <button
@@ -33,15 +47,24 @@ function closeMenu() {
       >
         <div
           class="ease h-[2px] w-full transform rounded-full bg-black transition duration-300"
-          :class="{ 'translate-y-[9px] rotate-45 !bg-white': activeMenu }"
+          :class="{
+            'translate-y-[9px] rotate-45 bg-white': activeMenu,
+            '!bg-white': underLimit
+          }"
         ></div>
         <div
           class="ease h-[2px] w-full transform rounded-full bg-black transition duration-300"
-          :class="{ 'bg-white opacity-0': activeMenu }"
+          :class="{
+            'bg-white opacity-0': activeMenu,
+            '!bg-white': underLimit
+          }"
         ></div>
         <div
           class="ease h-[2px] w-full transform rounded-full bg-black transition duration-300"
-          :class="{ '-translate-y-[9px] -rotate-45 !bg-white': activeMenu }"
+          :class="{
+            '-translate-y-[9px] -rotate-45 bg-white': activeMenu,
+            '!bg-white': underLimit
+          }"
         ></div>
       </button>
 
